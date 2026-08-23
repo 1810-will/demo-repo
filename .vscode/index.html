@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Coded Keyboard</title>
+
+    <style>
+        body{
+            background-color: black;
+    margin: 0;
+    min-height: 100vh;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+        }
+        .container {
+            width:90%;
+            display: flex;
+             flex-direction: row-reverse;
+        }
+
+        #message {
+            width:94% ;
+            padding: 12px;
+            font-size: 20px;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            box-shadow: inset 0 5px 5px rgba(0,0,0,0.5);
+            font-size: 60px;
+        }
+
+        #btn {
+            display:grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 8px;
+        }
+
+        .KEYS {
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 18px;
+            background-color: white;
+            border: none;
+        }
+        .KEYS:hover{
+            box-shadow:inset 1px 1px 30px rgba(0, 51, 255, 0.9);
+            border-radius: 10px;
+            border: none;
+        }
+        .clear:hover{
+                        box-shadow:inset 1px 1px 30px rgba(0, 43, 99, 0.5);
+            border-radius: 10px;
+            border: none;
+        }
+        .clear {
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <input
+            type="text"
+            id="message"
+            placeholder="Type your message"
+        >
+
+        <div id="btn">
+
+            <button class="KEYS" data-code="5">A</button>
+            <button class="KEYS" data-code="@">B</button>
+            <button class="KEYS" data-code="#">C</button>
+            <button class="KEYS" data-code="$">D</button>
+            <button class="KEYS" data-code="%">E</button>
+            <button class="KEYS" data-code="^">F</button>
+            <button class="KEYS" data-code="&">G</button>
+            <button class="KEYS" data-code="*">H</button>
+            <button class="KEYS" data-code="()">I</button>
+            <button class="KEYS" data-code=":">J</button>
+            <button class="KEYS" data-code="~">K</button>
+            <button class="KEYS" data-code="?">L</button>
+            <button class="KEYS" data-code="'">M</button>
+            <button class="KEYS" data-code="{}">N</button>
+            <button class="KEYS" data-code="_">O</button>
+            <button class="KEYS" data-code="&#92;">P</button>
+            <button class="KEYS" data-code="|">Q</button>
+            <button class="KEYS" data-code="X">R</button>
+            <button class="KEYS" data-code=">">S</button>
+            <button class="KEYS" data-code="+">T</button>
+            <button class="KEYS" data-code="/">U</button>
+            <button class="KEYS" data-code="=">V</button>
+            <button class="KEYS" data-code=",">W</button>
+            <button class="KEYS" data-code="L">X</button>
+            <button class="KEYS" data-code="J">Y</button>
+            <button class="KEYS" data-code="~">Z</button>
+
+           
+            <button class="clear" id="clearBtn">C</button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+   
+        const message = document.getElementById("message");
+
+
+  
+        const KEY = document.querySelectorAll(".KEYS");
+
+        KEY.forEach(function(key) {
+
+            key.addEventListener("click", function() {
+
+                const code = key.dataset.code;
+                message.value += code;
+
+            });
+
+        });
+
+
+        document.addEventListener("keydown", function(event) {
+
+            const pressedKey = event.key.toUpperCase();
+            KEY.forEach(function(key) {
+
+                if (key.textContent === pressedKey) {
+                    const code = key.dataset.code;
+                    message.value += code;
+
+                }
+
+            });
+
+        });
+        const clearBtn = document.getElementById("clearBtn");
+
+        clearBtn.addEventListener("click", function() {
+            message.value = "";
+
+        });
+
+    </script>
+
+</body>
+
+</html>
